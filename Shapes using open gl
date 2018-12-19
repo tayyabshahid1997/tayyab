@@ -1,0 +1,63 @@
+#include<windows.h>
+#include<GL/glut.h>
+
+
+
+void myinit() //set attributes
+{
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f); //  setting background color to black
+	glColor3f(0.0,0.1,1.0);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glMatrixMode(GL_MODELVIEW);
+}
+void display()
+{
+	// initializations of variables etc
+	glClear(GL_COLOR_BUFFER_BIT); // clear the background
+	glPushMatrix();
+	glLoadIdentity();
+	glTranslatef(0.4,0.5,0.0);
+	glutSolidSphere(0.2,20,25);
+	glPopMatrix();
+
+    glPushMatrix();
+	glLoadIdentity();
+	glTranslatef(-0.2,0.5,0.0);
+	glutWireSphere(0.2,20,25);
+	glPopMatrix();
+
+    glPushMatrix();
+	glLoadIdentity();
+    glRotatef(45,1,1,0);
+	glutWireCube(0.3);
+	glPopMatrix();
+
+	glPushMatrix();
+	glLoadIdentity();
+	glTranslatef(-0.2,-0.5,0.0);
+	glutWireTorus(0.05,0.15,20,25);
+	glPopMatrix();
+
+	glPushMatrix();
+	glLoadIdentity();
+	glTranslatef(0.4,-0.5,0.0);
+	glutWireTeapot(0.2);
+	glPopMatrix();
+	glFlush();
+}
+
+int main(int argc, char** argv) {
+	glutInit(&argc, argv);                 // Initialize GLUT
+	glutCreateWindow("CG LAB S1");         // Create a window with the given title
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+
+	glutInitWindowSize(320, 320);          // Set the window's initial width & height
+	glutInitWindowPosition(50, 50);        // Position the window's initial top-left corner
+	glutDisplayFunc(display);
+	myinit();
+	glutMainLoop();                       // Enter the infinitely event-processing loop
+	return 0;
+}
+
+
